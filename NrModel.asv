@@ -144,7 +144,7 @@ classdef NrModel < handle
                                     fileName);
                 trialOption = self.trialOptionRaw;
                 if multiPlane
-                    trialOption.zrange = [planeNum inf]; 
+                    trialOption.zrange = [planeNum+50 inf]; %edited to discard first 50 frames
                     trialOption.nFramePerStep = ...
                         self.expInfo.nPlane;
                     frameRate = self.expInfo.frameRate /self.expInfo.nPlane;
@@ -324,7 +324,7 @@ classdef NrModel < handle
                         mkdir(outSubDir)
                     end
                     trialOption.nFramePerStep = self.expInfo.nPlane;
-                    trialOption.zrange = [planeNum,inf]; 
+                    trialOption.zrange = [planeNum+48,inf]; %edited for discarding first 50 frames
                 else
                     error(['Please specify plane number for' ...
                            ' multiplane data!']);
@@ -396,7 +396,7 @@ classdef NrModel < handle
                 trialOption = param.trialOption;
                 if self.expInfo.nPlane > 1
                     trialOption.nFramePerStep = self.expInfo.nPlane;
-                    trialOption.zrange = [planeNum,inf]; 
+                    trialOption.zrange = [planeNum+48,inf]; %edited to dicard first 50 frames
                 end
                 [~,filePrefix] = batch.calcAnatomyFromFile(self.rawDataDir, ...
                                                        rawFileList,...
@@ -550,7 +550,7 @@ classdef NrModel < handle
                 if multiPlane
                     trialOption.frameRate = self.expInfo.frameRate/ ...
                                             self.expInfo.nPlane;
-                    trialOption.zrange = [planeNum inf];
+                    trialOption.zrange = [planeNum+48 inf];%edited to discard first 50 frames
                     trialOption.nFramePerStep = self.expInfo.nPlane;
                 else
                     trialOption.frameRate = self.expInfo.frameRate;
