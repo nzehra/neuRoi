@@ -27,7 +27,7 @@ for k=1:nSubplot
         title(odor);
         set(get(ax,'Title'),'Visible','on');
     end
-    colormap(flipud(pink))
+    %colormap(flipud(pink)) %flipud(pink)
     caxis(zlim)
     
     if k>nRow
